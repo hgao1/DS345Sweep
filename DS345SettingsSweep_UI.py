@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'DS345SettingsSweepSweep_UI.ui'
+# Form implementation generated from reading ui file 'DS345SettingsSweep_UI.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -8,16 +8,16 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_DS345SettingsSweepSweep(object):
-    def setupUi(self, DS345SettingsSweepSweep):
-        DS345SettingsSweepSweep.setObjectName("DS345SettingsSweepSweep")
-        DS345SettingsSweepSweep.resize(404, 365)
-        DS345SettingsSweepSweep.setMinimumSize(QtCore.QSize(253, 0))
-        self.verticalLayout = QtWidgets.QVBoxLayout(DS345SettingsSweepSweep)
+class Ui_DS345SettingsSweep(object):
+    def setupUi(self, DS345SettingsSweep):
+        DS345SettingsSweep.setObjectName("DS345SettingsSweep")
+        DS345SettingsSweep.resize(404, 365)
+        DS345SettingsSweep.setMinimumSize(QtCore.QSize(253, 0))
+        self.verticalLayout = QtWidgets.QVBoxLayout(DS345SettingsSweep)
         self.verticalLayout.setContentsMargins(2, 2, 2, 2)
         self.verticalLayout.setSpacing(1)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.groupOutput = QtWidgets.QGroupBox(DS345SettingsSweepSweep)
+        self.groupOutput = QtWidgets.QGroupBox(DS345SettingsSweep)
         font = QtGui.QFont()
         font.setBold(False)
         font.setWeight(50)
@@ -113,14 +113,14 @@ class Ui_DS345SettingsSweepSweep(object):
         self.labelModWaveform.setBuddy(self.ModWaveform)
         self.labelSweepRate.setBuddy(self.SweepRate)
 
-        self.retranslateUi(DS345SettingsSweepSweep)
+        self.retranslateUi(DS345SettingsSweep)
         self.ModType.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(DS345SettingsSweepSweep)
+        QtCore.QMetaObject.connectSlotsByName(DS345SettingsSweep)
 
-    def retranslateUi(self, DS345SettingsSweepSweep):
+    def retranslateUi(self, DS345SettingsSweep):
         _translate = QtCore.QCoreApplication.translate
-        DS345SettingsSweepSweep.setWindowTitle(_translate("DS345SettingsSweepSweep", "DS345"))
-        DS345SettingsSweepSweep.setStatusTip(_translate("DS345SettingsSweep", "DS345: Controls"))
+        DS345SettingsSweep.setWindowTitle(_translate("DS345SettingsSweep", "DS345"))
+        DS345SettingsSweep.setStatusTip(_translate("DS345SettingsSweep", "DS345: Controls"))
         self.groupOutput.setTitle(_translate("DS345SettingsSweep", "Sweep Output Configuration"))
         self.labelModType.setText(_translate("DS345SettingsSweep", "Modulation Type"))
         self.SweepRate.setStatusTip(_translate("DS345SettingsSweep", "DS345: Mod Rate"))
