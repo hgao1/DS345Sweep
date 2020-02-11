@@ -7,7 +7,9 @@ This version includes:
     Modulation Type (MTYP)
     Modulation Rate (RATE) 
     Sweep Stop Frequency (SPFR)
-    Sweep Start Frequency (STFR)'''
+    Sweep Start Frequency (STFR)
+    Modulation On and Off (MENA) 
+'''
 
 from PyQt5.QtCore import pyqtProperty
 from common.QSerialDevice import QSerialDevice
@@ -197,6 +199,18 @@ class DS345(QSerialDevice):
     @modwaveform.setter
     def modwaveform(self,value):
         self.send('MDWF {}'.format(np.clip(int(value),0,6)))
+
+    @pyqtProperty(int)
+    def modOnOff(self):
+        '''Turns modulation: 
+           0: off 
+           1: on 
+        '''
+        return int(self.handshake('MENA?'))
+    
+    @modOnOff.setter
+    def modOnOff(self,value):
+        self.send('MENA {}'.format(np.clip(int(value),0,1)))
         
     @pyqtProperty(int)
     def modtype(self):
