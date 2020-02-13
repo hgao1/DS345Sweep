@@ -50,6 +50,10 @@ class DS345(QSerialDevice):
         Index of modulation types
     modrate: float 
         Sets the modulation rate as input [Hz] per second..?
+    startfrequency: float 
+        Starting frequency for frequency sweep [Hz] 
+    stopfrequency: float
+        Stopping frequency for frequency sweep [Hz]
     
     
     Methods
@@ -141,21 +145,21 @@ class DS345(QSerialDevice):
         self.send('PHSE {:.2f}'.format(float(value)))
         
     @pyqtProperty(float)
-    def modulation startfreq(self):
+    def startfrequency(self):
         '''Starting output frequency for sweep [Hz] '''
         return float(self.handshake('STFR?'))
     
-    @startfreq.setter 
-    def startfreq(self, value): 
+    @startfrequency.setter 
+    def startfrequency(self, value): 
         self.send('STFR {:.4f}'.format(float(value)))
     
     @pyqtProperty(float)
-    def stopfreq(self):
+    def stopfrequency(self):
         '''Stopping output frequency for sweep [Hz] '''
         return float(self.handshake('SPFR?'))
     
-    @stopfreq.setter
-    def stopfreq(self,value):
+    @stopfrequency.setter
+    def stopfrequency(self,value):
         self.send('SPFR {:.4f}'.format(float(value)))
     
     @pyqtProperty(float)
