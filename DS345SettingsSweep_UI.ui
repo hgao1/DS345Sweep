@@ -76,54 +76,6 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
-       <widget class="QLabel" name="labelSweepRate">
-        <property name="text">
-         <string>Sweep Rate</string>
-        </property>
-        <property name="buddy">
-         <cstring>modrate</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="4">
-       <widget class="QDoubleSpinBox" name="modrate">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="statusTip">
-         <string>DS345: Mod Rate</string>
-        </property>
-        <property name="suffix">
-         <string> Hz</string>
-        </property>
-        <property name="decimals">
-         <number>0</number>
-        </property>
-        <property name="minimum">
-         <double>1.000000000000000</double>
-        </property>
-        <property name="maximum">
-         <double>1000000.000000000000000</double>
-        </property>
-        <property name="singleStep">
-         <double>1.000000000000000</double>
-        </property>
-        <property name="value">
-         <double>1.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLabel" name="labelStopFrequency">
-        <property name="text">
-         <string>Stop Frequency</string>
-        </property>
-       </widget>
-      </item>
       <item row="7" column="1">
        <widget class="QLabel" name="labelModWaveform">
         <property name="text">
@@ -131,110 +83,6 @@
         </property>
         <property name="buddy">
          <cstring>modwaveform</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="4">
-       <widget class="QComboBox" name="modtype">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="statusTip">
-         <string>DS345: Mod Type</string>
-        </property>
-        <property name="currentIndex">
-         <number>0</number>
-        </property>
-        <item>
-         <property name="text">
-          <string>linear </string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>log</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>AM</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>FM</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>PM</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>burst</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="8" column="4">
-       <widget class="QComboBox" name="modOnOff">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="statusTip">
-         <string>DS345: ModOnOff</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>Off</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>On</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="2" column="4">
-       <widget class="QDoubleSpinBox" name="stopfrequency">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="statusTip">
-         <string>DS345: Stop Frequency [Hz]</string>
-        </property>
-        <property name="suffix">
-         <string> Hz</string>
-        </property>
-        <property name="decimals">
-         <number>6</number>
-        </property>
-        <property name="minimum">
-         <double>0.000010000000000</double>
-        </property>
-        <property name="maximum">
-         <double>1000000.000000000000000</double>
-        </property>
-        <property name="value">
-         <double>1.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="labelStartFrequency">
-        <property name="text">
-         <string>Start Frequency</string>
         </property>
        </widget>
       </item>
@@ -286,6 +134,43 @@
         </item>
        </widget>
       </item>
+      <item row="8" column="4">
+       <widget class="QComboBox" name="modOnOff">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="statusTip">
+         <string>DS345: ModOnOff</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Off</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>On</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QLabel" name="labelModSetter">
+        <property name="text">
+         <string>Modulation Setter</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="labelStopFrequency">
+        <property name="text">
+         <string>Stop Frequency</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="4">
        <widget class="QDoubleSpinBox" name="startfrequency">
         <property name="sizePolicy">
@@ -314,10 +199,125 @@
         </property>
        </widget>
       </item>
-      <item row="8" column="1">
-       <widget class="QLabel" name="labelModSetter">
+      <item row="0" column="1">
+       <widget class="QLabel" name="labelStartFrequency">
         <property name="text">
-         <string>Modulation Setter</string>
+         <string>Start Frequency</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="4">
+       <widget class="QDoubleSpinBox" name="modrate">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="statusTip">
+         <string>DS345: Mod Rate</string>
+        </property>
+        <property name="suffix">
+         <string> Hz</string>
+        </property>
+        <property name="decimals">
+         <number>2</number>
+        </property>
+        <property name="minimum">
+         <double>0.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>10000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>1.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="4">
+       <widget class="QComboBox" name="modtype">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="statusTip">
+         <string>DS345: Mod Type</string>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <item>
+         <property name="text">
+          <string>linear </string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>log</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>AM</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>FM</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>PM</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>burst</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="labelSweepRate">
+        <property name="text">
+         <string>Sweep Rate</string>
+        </property>
+        <property name="buddy">
+         <cstring>modrate</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="4">
+       <widget class="QDoubleSpinBox" name="stopfrequency">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="statusTip">
+         <string>DS345: Stop Frequency [Hz]</string>
+        </property>
+        <property name="suffix">
+         <string> Hz</string>
+        </property>
+        <property name="decimals">
+         <number>6</number>
+        </property>
+        <property name="minimum">
+         <double>0.000010000000000</double>
+        </property>
+        <property name="maximum">
+         <double>1000000.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>1.000000000000000</double>
         </property>
        </widget>
       </item>
@@ -346,19 +346,6 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
-       <widget class="QLabel" name="labelAmplitude">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Amplitude</string>
-        </property>
-       </widget>
-      </item>
       <item row="5" column="4">
        <widget class="QDoubleSpinBox" name="amplitude">
         <property name="sizePolicy">
@@ -381,6 +368,70 @@
         </property>
         <property name="value">
          <double>1.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLabel" name="labelAmplitude">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Amplitude</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="4">
+       <widget class="QComboBox" name="triggersource">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="statusTip">
+         <string>DS345: triggersource</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>single</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>internal</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>+ Ext</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>- Ext</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>line</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QLabel" name="label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Trigger Source</string>
         </property>
        </widget>
       </item>
