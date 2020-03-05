@@ -21,7 +21,7 @@ from parse import parse
 import logging
 logging.basicConfig()
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 
 class DS345(QSerialDevice):
@@ -129,6 +129,15 @@ class DS345(QSerialDevice):
     @frequency.setter
     def frequency(self, value):
         self.send('FREQ {:.4f}'.format(float(value)))
+    def freq(self):
+        return float(self.handshake('FREQ?'))
+   
+    @property
+    def data(self):
+        res = self.handshake('FREQ?')
+        va = res
+        logger.debug('frequency: {} '.format(va))
+        return float(va)
 
     @pyqtProperty(float)
     def offset(self):
