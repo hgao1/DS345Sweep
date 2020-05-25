@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
+'''
+This version of Qacam.py has been
+re-formatted to work with frequency sweeps,
+and utilizes DS345_Sweep.py.
 
+If the user is interested in a single frequency,
+these lines must be changed: 89-105.
+
+'''
 from PyQt5.QtWidgets import (QMainWindow, QFileDialog)
 from PyQt5.QtCore import (pyqtSlot, Qt, QThread)
 from Qacam_UI import Ui_Qacam
@@ -78,27 +86,31 @@ class Qacam(QMainWindow):
         self.scanner.moveToThread(self.thread)
 
     def connectSignals(self):
+        #For regular scan, keep the lines 90-97:
         onscan = self.ui.scan.clicked.connect
         onscan(lambda v: self.ui.controlWidget.setEnabled(False))
         onscan(self.scanner.runScan)
         onscan(self.toggleScan)
+        self.scanner.newData.connect(self.plotBelt)
+        self.scanner.motion.connect(self.plotBelt)
+        # self.scanner.newData.connect(self.recordScan)
+        # self.scanner.finished.connect(self.scanFinished)
+
+        # For sweep, keep the lines 100-105:
         onsweep = self.ui.sweep.clicked.connect
         onsweep(lambda v: self.ui.controlWidget.setEnabled(False))
         onsweep(self.scanner.Sweeprun)
         onsweep(self.toggleScan)
         self.scanner.sweepData.connect(self.recordSweep)
-        self.scanner.newData.connect(self.plotBelt)
-       # self.scanner.newData.connect(self.recordScan)
-        self.scanner.motion.connect(self.plotBelt)
-       # self.scanner.finished.connect(self.scanFinished)
         self.scanner.finished.connect(self.sweepFinished)
+
         oncenter = self.ui.polargraph.ui.gotocenter.clicked.connect
         oncenter(self.plotPath)
         oncenter(self.scanner.moveToCenter)
         onhome = self.ui.polargraph.ui.gotohome.clicked.connect
         onhome(self.plotPath)
         onhome(self.scanner.moveToHome)
-        
+
         ui = self.ui.polargraph.ui
         ui.ell.valueChanged.connect(self.plotPath)
         ui.y0.valueChanged.connect(self.plotPath)
@@ -164,7 +176,7 @@ class Qacam(QMainWindow):
         dat= np.array(self.data)
         logger.debug('data:{}'.format(dat))
         self.statusBar().showMessage('Sweep finished')
-        
+
     @pyqtSlot(bool)
     def scanFinished(self, update):
         self.ui.scan.setText('Scan')
@@ -205,7 +217,7 @@ class Qacam(QMainWindow):
         self.data.append([val for tup in data for val in tup])
         amp, phi = data[1]
         freq = data[2]
-        logger.debug('Data for recording sweep is being done') 
+        logger.debug('Data for recording sweep is being done')
     @pyqtSlot(object)
     def plotBelt(self, data=None):
         ell = self.ui.polargraph.ui.ell.value()

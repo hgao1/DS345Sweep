@@ -1,16 +1,21 @@
 # -*- coding: utf-8 -*-
 
 '''
-From DS345.py, modified to chirp instead of running at a constant frequency. 
-This version includes: 
-    Modulation Waveform (MDWF) 
+From DS345.py, modified to chirp instead of running at a constant frequency.
+This version includes:
+    Modulation Waveform (MDWF)
     Modulation Type (MTYP)
-    Modulation Rate (RATE) 
+    Modulation Rate (RATE)
     Sweep Stop Frequency (SPFR)
     Sweep Start Frequency (STFR)
-    Modulation On and Off (MENA) 
-    Addition of a trigger (*TRG) 
-    Trigger Source (TRSC) 
+    Modulation On and Off (MENA)
+    Addition of a trigger (*TRG)
+    Trigger Source (TRSC)
+
+If the user is interested in running at a cosntant frequency,
+this file as well as Qacam.py must be modified.
+In this file:
+155-168, 171-277 
 '''
 
 from PyQt5.QtCore import pyqtProperty
@@ -46,20 +51,20 @@ class DS345(QSerialDevice):
        Else, set amplitude to last value.
     identification : str
        Identification string returned by instrument
-    modwaveform: 0 .. 6 
-        Index of output modulation waveform selection 
-    modtype: 0 .. 5 
+    modwaveform: 0 .. 6
+        Index of output modulation waveform selection
+    modtype: 0 .. 5
         Index of modulation types
-    modrate: float 
+    modrate: float
         Sets the modulation rate as input [Hz] per second..?
-    startfrequency: float 
-        Starting frequency for frequency sweep [Hz] 
+    startfrequency: float
+        Starting frequency for frequency sweep [Hz]
     stopfrequency: float
         Stopping frequency for frequency sweep [Hz]
-    triggersource: 0 .. 4 
-        Sets the trigger source 
-    modOnOff: 0,1 
-        Turns modulation on or off 
+    triggersource: 0 .. 4
+        Sets the trigger source
+    modOnOff: 0,1
+        Turns modulation on or off
     Methods
     -------
     identify() : bool
@@ -72,8 +77,8 @@ class DS345(QSerialDevice):
                                     parity=QSerialDevice.NoParity,
                                     stopbits=QSerialDevice.TwoStop)
         self._mute = False
-        self.amplitude = 0. 
-        
+        self.amplitude = 0.
+
     def identify(self):
         '''Check identity of instrument
 
@@ -105,7 +110,7 @@ class DS345(QSerialDevice):
         elif self._mute:
             self._mute = False
             self.amplitude = self._amplitude
-        
+
     # Function output adjustable properties
     @pyqtProperty(float)
     def amplitude(self):
@@ -131,7 +136,7 @@ class DS345(QSerialDevice):
         self.send('FREQ {:.4f}'.format(float(value)))
     def freq(self):
         return float(self.handshake('FREQ?'))
-   
+
     @property
     def data(self):
         res = self.handshake('FREQ?')
@@ -152,41 +157,45 @@ class DS345(QSerialDevice):
     def phase(self):
         Output phase [degrees]
         return float(self.handshake('PHSE?'))
-    
+
     @phase.setter
     def phase(self, value):
         self.send('PHSE {:.2f}'.format(float(value)))
 
-    DS345 manual states that this will produce an error 
-    if a frequency sweep is enabled.
-    '''    
+    DS345 manual states that this will produce an error
+    if a frequency sweep is enabled: Un-comment the above
+    for a single frequency.
+    '''
+
+    # The following can be commented out for a single frequency:
     @pyqtProperty(float)
     def startfrequency(self):
         '''Starting output frequency for sweep [Hz] '''
         return float(self.handshake('STFR?'))
-    
-    @startfrequency.setter 
-    def startfrequency(self, value): 
+
+    @startfrequency.setter
+    def startfrequency(self, value):
         self.send('STFR {:.4f}'.format(float(value)))
-    
+
     @pyqtProperty(float)
     def stopfrequency(self):
         '''Stopping output frequency for sweep [Hz] '''
         return float(self.handshake('SPFR?'))
-    
+
     @stopfrequency.setter
     def stopfrequency(self,value):
         self.send('SPFR {:.4f}'.format(float(value)))
-    
+
+
     @pyqtProperty(float)
     def modrate(self):
-        '''Sweep rate of frequency per second [Hz] ''' 
+        '''Sweep rate of frequency per second [Hz] '''
         return float(self.handshake('RATE?'))
-    
+
     @modrate.setter
     def modrate(self,value):
         self.send('RATE {:.4f}'.format(float(value)))
-        
+
     @pyqtProperty(int)
     def waveform(self):
         '''Output waveform
@@ -205,20 +214,20 @@ class DS345(QSerialDevice):
     @pyqtProperty(int)
     def triggersource(self):
         '''Set the trigger source
-           0: single 
+           0: single
            1: internal
            2: + Ext
-           3: - Ext 
-           4: line 
+           3: - Ext
+           4: line
          '''
         return int(self.handshake('TSRC?'))
-    
+
     @triggersource.setter
     def triggersource(self, value):
         self.send('TSRC {}'.format(np.clip(int(value),0,4)))
     def trigger(self):
         self.send('*TRG')
-        
+
     @pyqtProperty(int)
     def modwaveform(self):
         '''Output waveform
@@ -231,24 +240,24 @@ class DS345(QSerialDevice):
             6: none
          '''
         return int(self.handshake('MDWF?'))
-    
+
     @modwaveform.setter
     def modwaveform(self,value):
         self.send('MDWF {}'.format(np.clip(int(value),0,6)))
-        
+
     @pyqtProperty(int)
     def modOnOff(self):
-        '''Turns modulation: 
-           0: off 
-           1: on 
+        '''Turns modulation:
+           0: off
+           1: on
         '''
         return int(self.handshake('MENA?'))
-    
+
     @modOnOff.setter
     def modOnOff(self,value):
         self.send('MENA {}'.format(np.clip(int(value),0,1)))
-        
-        
+
+
     @pyqtProperty(int)
     def modtype(self):
         '''Modulation Type
@@ -260,11 +269,12 @@ class DS345(QSerialDevice):
             5: Burst
          '''
         return int(self.handshake('MTYP?'))
-    
+
     @modwaveform.setter
     def modtype(self,value):
         self.send('MTYP {}'.format(np.clip(int(value),0,5)))
 
+# Stop here, keep code below for both.
 
     @pyqtProperty(int)
     def invert(self):
@@ -273,7 +283,7 @@ class DS345(QSerialDevice):
     @invert.setter
     def invert(self, value):
         self.send('INVT {}'.format(np.clip(int(value), 0, 1)))
-        
+
     def setECL(self):
         '''Set ECL levels: 1Vpp, -1.3V offset'''
         self.send('AECL')
@@ -284,4 +294,4 @@ class DS345(QSerialDevice):
 
     def setPhaseZero(self):
         '''Set waveform phase to zero'''
-        self.send('PCLR')  
+        self.send('PCLR')
